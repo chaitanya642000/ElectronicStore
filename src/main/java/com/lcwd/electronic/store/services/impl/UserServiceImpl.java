@@ -9,12 +9,19 @@ import com.lcwd.electronic.store.repositories.UserRepository;
 import com.lcwd.electronic.store.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -28,6 +35,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public ModelMapper mapper;
+
+    @Value("${user.profile.image.path}")
+    private String fullFilePath;
     @Override
     public UserDto createUser(UserDto user) {
 
@@ -47,6 +57,18 @@ public class UserServiceImpl implements UserService {
         user.setAbout(userdto.getAbout());
         user.setGender(userdto.getGender());
         //user.setEmail(userdto.getEmail());
+        if(!user.getUserImage().equals("defaultimage.jpg"))
+        {
+            String fullpath = fullFilePath+File.separator+user.getUserImage();
+            Path path = Paths.get(fullpath);
+
+            try {
+                Files.delete(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
         user.setUserImage(userdto.getUserImage());
         user.setPassword(userdto.getPassword());
 
@@ -61,6 +83,20 @@ public class UserServiceImpl implements UserService {
     public UserDto deleteUser(String userId) {
         User user = userRepository.findById(userId).
                 orElseThrow(()->new ResourceNotFoundException("User not found"));
+
+        if(!user.getUserImage().equals("defaultimage.jpg"))
+        {
+            String fullpath = fullFilePath+ File.separator+user.getUserImage();
+            Path path = Paths.get(fullpath);
+
+            try {
+                Files.delete(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+
+        }
 
         UserDto userdeletedDto = entityToDto(user);
         userRepository.deleteById(userId);

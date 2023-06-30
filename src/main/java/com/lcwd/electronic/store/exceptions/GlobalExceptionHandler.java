@@ -72,13 +72,13 @@ public class GlobalExceptionHandler{
     }
 
     @ExceptionHandler(ExceptionDuringFolderCreation.class)
-    public ResponseEntity<ApiMessageResponse>badApiRequestHandler(ExceptionDuringFolderCreation ex)
+    public ResponseEntity<ApiMessageResponse>folderNotCreatedExceptionHandler(ExceptionDuringFolderCreation ex)
     {
 
         logger.info(ex.getMessage());
 
         ApiMessageResponse response = ApiMessageResponse.builder().message(ex.getMessage()).
-                success(true).status(HttpStatus.BAD_REQUEST).build();
+                success(false).status(HttpStatus.BAD_REQUEST).build();
         return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
 

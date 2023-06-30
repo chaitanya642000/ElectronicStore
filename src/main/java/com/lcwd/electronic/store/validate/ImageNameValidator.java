@@ -13,8 +13,8 @@ public class ImageNameValidator implements ConstraintValidator<ImageNameValid,St
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
 
         logger.info("Message from ImageNameValidator "+value);
-
-        if(value.isBlank())
+        //String regex = ".*[^a-zA-Z0-9 ].*";
+        if(value.length()>200)
         {
             return false;
         }

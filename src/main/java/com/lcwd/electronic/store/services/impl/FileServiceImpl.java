@@ -33,6 +33,7 @@ public class FileServiceImpl implements FileService {
 
        String fullPathWithFileName = path+ File.separator+fileNameWithExtension;
 
+
        if(extension.equalsIgnoreCase(".png") || extension.equalsIgnoreCase(".jpg") ||
            extension.equalsIgnoreCase(".jpeg"))
         {
@@ -46,15 +47,15 @@ public class FileServiceImpl implements FileService {
                {
                    throw new ExceptionDuringFolderCreation("Folder not created ");
                }
-               Files.copy(file.getInputStream(), Paths.get(fullPathWithFileName));
            }
+            Files.copy(file.getInputStream(), Paths.get(fullPathWithFileName));
 
         }else
         {
             throw new BadApiRequest("Invalid extension for uploaded file");
         }
 
-       return fileName;
+       return fileNameWithExtension;
 
     }
 
