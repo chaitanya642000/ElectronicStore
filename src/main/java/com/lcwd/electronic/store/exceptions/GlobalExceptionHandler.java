@@ -82,4 +82,16 @@ public class GlobalExceptionHandler{
         return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(UniqueTitleException.class)
+    public ResponseEntity<ApiMessageResponse>UniqueTitleExceptionHandler(UniqueTitleException ex)
+    {
+
+        logger.info(ex.getMessage());
+
+        ApiMessageResponse response = ApiMessageResponse.builder().message(ex.getMessage()).
+                success(false).status(HttpStatus.BAD_REQUEST).build();
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+    }
+
+
 }

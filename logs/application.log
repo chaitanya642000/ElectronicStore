@@ -1,0 +1,69 @@
+2023-07-25 23:09:21.399  INFO 19596 --- [restartedMain] c.l.e.store.ElectronicStoreApplication   : Starting ElectronicStoreApplication using Java 17.0.6 on DI2INPUN0886WNB with PID 19596 (C:\Users\chaguj42\Desktop\project\ElectronicStore\target\classes started by chaguj42 in C:\Users\chaguj42\Desktop\project\ElectronicStore)
+2023-07-25 23:09:21.425  INFO 19596 --- [restartedMain] c.l.e.store.ElectronicStoreApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-07-25 23:09:21.632  INFO 19596 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-07-25 23:09:21.653  INFO 19596 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-07-25 23:09:24.216  INFO 19596 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-25 23:09:24.421  INFO 19596 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 187 ms. Found 5 JPA repository interfaces.
+2023-07-25 23:09:26.247  INFO 19596 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2023-07-25 23:09:26.267  INFO 19596 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-25 23:09:26.269  INFO 19596 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.75]
+2023-07-25 23:09:26.511  INFO 19596 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-25 23:09:26.512  INFO 19596 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4854 ms
+2023-07-25 23:09:26.860  INFO 19596 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-25 23:09:26.947  INFO 19596 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-07-25 23:09:27.555  INFO 19596 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-07-25 23:09:27.972  INFO 19596 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-25 23:09:29.110  INFO 19596 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-25 23:09:29.170  INFO 19596 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-07-25 23:09:30.124 ERROR 19596 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Illegal attempt to map a non collection as a @OneToMany, @ManyToMany or @CollectionOfElements: com.lcwd.electronic.store.entities.OrderItem.order
+2023-07-25 23:09:30.126  WARN 19596 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: Illegal attempt to map a non collection as a @OneToMany, @ManyToMany or @CollectionOfElements: com.lcwd.electronic.store.entities.OrderItem.order
+2023-07-25 23:09:30.130  INFO 19596 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-25 23:09:30.148  INFO 19596 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-25 23:09:30.153  INFO 19596 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-25 23:09:30.183  INFO 19596 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-07-25 23:09:30.240 ERROR 19596 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: Illegal attempt to map a non collection as a @OneToMany, @ManyToMany or @CollectionOfElements: com.lcwd.electronic.store.entities.OrderItem.order
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1156) ~[spring-context-5.3.27.jar:5.3.27]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:910) ~[spring-context-5.3.27.jar:5.3.27]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.27.jar:5.3.27]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.12.jar:2.7.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731) ~[spring-boot-2.7.12.jar:2.7.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.12.jar:2.7.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.7.12.jar:2.7.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.7.12.jar:2.7.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.7.12.jar:2.7.12]
+	at com.lcwd.electronic.store.ElectronicStoreApplication.main(ElectronicStoreApplication.java:11) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.7.12.jar:2.7.12]
+Caused by: org.hibernate.AnnotationException: Illegal attempt to map a non collection as a @OneToMany, @ManyToMany or @CollectionOfElements: com.lcwd.electronic.store.entities.OrderItem.order
+	at org.hibernate.cfg.annotations.CollectionBinder.getCollectionBinder(CollectionBinder.java:325) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.cfg.AnnotationBinder.processElementAnnotations(AnnotationBinder.java:1977) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.cfg.AnnotationBinder.processIdPropertiesIfNotAlready(AnnotationBinder.java:968) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:793) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:225) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.processEntityHierarchies(MetadataBuildingProcess.java:239) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:282) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1460) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1494) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.27.jar:5.3.27]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.27.jar:5.3.27]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.27.jar:5.3.27]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-5.3.27.jar:5.3.27]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) ~[spring-orm-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.27.jar:5.3.27]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.27.jar:5.3.27]
+	... 21 common frames omitted
+

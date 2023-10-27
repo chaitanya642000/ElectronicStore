@@ -46,7 +46,7 @@ public class UserController {
 
     //create a new User
     @PostMapping
-    public ResponseEntity<ApiMessageResponse>createUser(@RequestBody @Valid UserDto userDto)
+    public ResponseEntity<UserDto>createUser(@RequestBody @Valid UserDto userDto)
     {
         logger.info(String.valueOf(userDto));
         if(userDto.getUserImage() == null || userDto.getUserImage().equals(""))
@@ -56,7 +56,7 @@ public class UserController {
         UserDto user = userService.createUser(userDto);
         ApiMessageResponse response= ApiMessageResponse.builder().
                 message("User Created Successfully").status(HttpStatus.CREATED).success(true).build();
-         return new ResponseEntity<>(response,HttpStatus.CREATED);
+         return new ResponseEntity<>(user,HttpStatus.CREATED);
     }
 
 

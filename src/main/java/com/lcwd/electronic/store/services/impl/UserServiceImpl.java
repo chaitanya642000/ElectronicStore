@@ -2,9 +2,11 @@ package com.lcwd.electronic.store.services.impl;
 
 import com.lcwd.electronic.store.dtos.PageableResponse;
 import com.lcwd.electronic.store.dtos.UserDto;
+import com.lcwd.electronic.store.entities.Role;
 import com.lcwd.electronic.store.entities.User;
 import com.lcwd.electronic.store.exceptions.ResourceNotFoundException;
 import com.lcwd.electronic.store.helper.Helper;
+import com.lcwd.electronic.store.repositories.RoleRepository;
 import com.lcwd.electronic.store.repositories.UserRepository;
 import com.lcwd.electronic.store.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -22,13 +25,14 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
 
     @Autowired
     private UserRepository userRepository;
@@ -38,14 +42,34 @@ public class UserServiceImpl implements UserService {
 
     @Value("${user.profile.image.path}")
     private String fullFilePath;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Value("${normal.role.id}")
+    private String normal_userID;
+
     @Override
     public UserDto createUser(UserDto user) {
 
         String userId = UUID.randomUUID().toString();
         user.setUserId(userId);
-        User user1 = dtoToEntity(user);
-        User userSaved = userRepository.save(user1);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+        User user1 = dtoToEntity(user);
+
+        Role role = roleRepository.findById(normal_userID).get();
+        HashSet<Role>roles = (HashSet<Role>) user1.getRoles();
+        if(roles == null)
+        {
+            roles = new HashSet<Role>();
+        }
+        roles.add(role);
+        user1.setRoles(roles);
+        User userSaved = userRepository.save(user1);
         UserDto userDto = entityToDto(user1);
         return userDto;
     }
@@ -156,6 +180,11 @@ public class UserServiceImpl implements UserService {
                 .map((User user)->entityToDto(user))
                 .collect(Collectors.toList());
         return userDtos;
+    }
+
+    @Override
+    public Optional<User> findUserByEmailOptional(String email) {
+        return Optional.ofNullable(userRepository.findByEmail(email));
     }
 
     private UserDto entityToDto(User user1) {
